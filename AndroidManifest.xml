@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.example.Hey"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk
+            android:minSdkVersion="14"
+            android:maxSdkVersion="19"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <uses-feature
+            android:name="android.hardware.camera"
+            android:required="true" />
+
+    <permission
+            android:name="com.example.Hey.permission.C2D_MESSAGE"
+            android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.Hey.permission.C2D_MESSAGE" />
+
+    <application
+            android:label="@string/app_name"
+            android:name="com.example.Hey.TickTockApplication"
+            android:icon="@drawable/ic_launcher"
+            android:allowBackup="true"
+            android:theme="@style/Theme.Hey">
+        <activity android:name="com.example.Hey.MainActivity"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.Hey.LoginActivity"
+                  android:label="@string/title_activity_login"
+                  android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name="com.example.Hey.SignUpActivity"
+                  android:label="@string/title_activity_sign_up"
+                  android:screenOrientation="portrait"
+                android:parentActivityName="com.example.Hey.LoginActivity">
+
+        </activity>
+        <activity android:name="com.example.Hey.EditFriendsActivity"
+                  android:label="EditFriendsActivity"
+                  android:screenOrientation="portrait"
+                  android:parentActivityName="com.example.Hey.MainActivity">
+
+        </activity>
+        <activity
+                android:name="com.example.Hey.RecipientsActivity"
+                android:label="Choose Recipients"
+                android:screenOrientation="portrait"
+                android:parentActivityName="com.example.Hey.MainActivity"/>
+        <activity
+                android:name="com.example.Hey.ViewImageActivity"
+                android:label="SnapC"
+                android:screenOrientation="portrait"
+                android:parentActivityName="com.example.Hey.MainActivity"/>
+
+        <service android:name="com.parse.PushService" />
+
+        <receiver android:name="com.parse.ParseBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+                android:name="com.parse.GcmBroadcastReceiver"
+                android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.example.Hey" />
+            </intent-filter>
+        </receiver>
+
+
+    </application>
+</manifest>
